@@ -82,36 +82,59 @@
 
 // console.log(maxSubarraySum([100, 200, 300, 400], 2));
 
-const minSubArrayLen = (arr, total) => {
-    if (arr.length === 1 && arr[0] >= total) {
-        return 1;
-    } else if (arr.length === 1 && arr[0] < total) {
-        return 0;
-    } else if (arr[0] >= total) {
-        return 1;
-    }
-    let leftSide = 0;
-    let rightSide = 1;
-    let subarrayLength = 0;
-    while (rightSide < arr.length) {
-        let arrTotal = 0;
-        for (let i = leftSide; i <= rightSide; i++) {
-            arrTotal += arr[i];
-        }
-        if (arrTotal >= total) {
-            let totalLength = rightSide - leftSide + 1;
-            if (totalLength === 1) {
-                subarrayLength = totalLength;
-                break;
-            } else if (subarrayLength === 0 || totalLength < subarrayLength) {
-                subarrayLength = totalLength;
-            }
-            leftSide++;
+// const minSubArrayLen = (arr, total) => {
+//     if (arr.length === 1 && arr[0] >= total) {
+//         return 1;
+//     } else if (arr.length === 1 && arr[0] < total) {
+//         return 0;
+//     } else if (arr[0] >= total) {
+//         return 1;
+//     }
+//     let leftSide = 0;
+//     let rightSide = 1;
+//     let subarrayLength = 0;
+//     while (rightSide < arr.length) {
+//         let arrTotal = 0;
+//         for (let i = leftSide; i <= rightSide; i++) {
+//             arrTotal += arr[i];
+//         }
+//         if (arrTotal >= total) {
+//             let totalLength = rightSide - leftSide + 1;
+//             if (totalLength === 1) {
+//                 subarrayLength = totalLength;
+//                 break;
+//             } else if (subarrayLength === 0 || totalLength < subarrayLength) {
+//                 subarrayLength = totalLength;
+//             }
+//             leftSide++;
+//         } else {
+//             rightSide++;
+//         }
+//     }
+//     return subarrayLength;
+// }
+
+// console.log(minSubArrayLen([1, 2, 4, 6, 5], 4));
+
+const findLongestSubstring = (str) => {
+    if (str.length === 0) return 0;
+    if (str.length === 1) return 1;
+    let leftEdge = 0;
+    let rightEdge = 1;
+    let longest = 1;
+    while (rightEdge < str.length) {
+        const newChar = str[rightEdge];
+        const regex = new RegExp(newChar);
+        const substring = str.slice(leftEdge, rightEdge);
+        if (regex.test(substring)) {
+            longest = Math.max(longest, substring.length);
+            leftEdge++;
         } else {
-            rightSide++;
+            longest = Math.max(longest, substring.length + 1);
+            rightEdge++;
         }
     }
-    return subarrayLength;
+    return longest;
 }
 
-console.log(minSubArrayLen([1, 2, 4, 6, 5], 4));
+console.log(findLongestSubstring('dddddddd'))
