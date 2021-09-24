@@ -54,19 +54,19 @@
 // console.log(recursiveRange(22));
 // console.log(recursiveRange(1));
 
-function fib(num) {
-    let fibArray = [];
-    function fibSequence(numsLeft) {
-        if (numsLeft === 0) return fibArray[num - 1];
-        if (fibArray[0] !== 1 || fibArray[1] !== 1) {
-            fibArray.push(1);
-        } else {
-            fibArray.push(fibArray[fibArray.length - 1] + fibArray[fibArray.length - 2]);
-        }
-        return fibSequence(numsLeft - 1);
-    }
-    return fibSequence(num);
-}
+// function fib(num) {
+//     let fibArray = [];
+//     function fibSequence(numsLeft) {
+//         if (numsLeft === 0) return fibArray[num - 1];
+//         if (fibArray[0] !== 1 || fibArray[1] !== 1) {
+//             fibArray.push(1);
+//         } else {
+//             fibArray.push(fibArray[fibArray.length - 1] + fibArray[fibArray.length - 2]);
+//         }
+//         return fibSequence(numsLeft - 1);
+//     }
+//     return fibSequence(num);
+// }
 
-console.log(fib(4));
-console.log(fib(10));
+// console.log(fib(4));
+// console.log(fib(10));
